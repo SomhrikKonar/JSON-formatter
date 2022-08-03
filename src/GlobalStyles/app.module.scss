@@ -1,0 +1,15 @@
+.container{
+    .navbar{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 60px;
+        max-height: 60px;
+    }
+    .body{
+        display: flex;
+        justify-content: space-between;
+        height: calc(100vh - 100px);
+        padding: 20px;
+    }
+}

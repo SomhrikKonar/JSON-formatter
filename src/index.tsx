@@ -1,15 +1,20 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./GlobalStyles/index.scss";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import "./GlobalStyles/variable.scss";
+import { StoreProvider } from "./Store/Store";
+import { initialState, updateJsonReducer } from "./Store/Reducers/Json";
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <StoreProvider initialState={initialState} reducer={updateJsonReducer}>
+      <App />
+    </StoreProvider>
   </React.StrictMode>
 );
 

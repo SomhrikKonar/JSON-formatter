@@ -1,0 +1,34 @@
+.objectContainer{
+    .objectHider{
+        margin-right: 8px;
+        cursor: pointer;
+        transition: transform 200ms ease-in-out;
+    }
+    .paranthesis{
+        margin-block:5px;
+        margin-left: 10px;
+    }
+    .emptyObjectParanthesis{
+        margin: 0;
+    }
+    .line{
+        margin-left: 15px;
+        margin-block: 5px;
+        .key{
+            white-space: nowrap;
+            min-width: fit-content
+        }
+        .value{
+            min-width: fit-content
+        }
+    }
+    .flexLine{
+        display: flex;
+        .value{
+            margin-left: 5px;
+        }
+    }
+}
+.flexObjectContainer{
+    display: flex;
+}

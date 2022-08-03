@@ -1,0 +1,21 @@
+.container{
+    flex: 1;
+    margin-left: 20px;
+    border-radius: 10px;
+    border: 1px solid black;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .formattedCodeContainer{
+        height: calc(100% - 20px);
+        border-radius: 10px;
+        width: 100%;
+        background-color: var(--textarea-bg);
+        padding: 10px;
+        font-family: monospace;
+        color: var(--textarea-font);
+        overflow: auto;
+    }
+}

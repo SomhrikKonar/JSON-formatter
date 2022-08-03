@@ -1,0 +1,36 @@
+.container{
+    flex: 1;
+    max-height: 100%;
+    padding:0px 30px 20px;
+    position: relative;
+    margin-right: 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    .inputFormatContainer{
+        margin-right: auto;
+    }
+    select{
+        margin-block: 10px;
+        margin-left: 10px;
+        width: 150px;
+    }
+    textarea{
+        width: 100%;
+        flex: 1;
+        resize: none;
+        border-radius: 10px;
+        border: 0;
+        outline: 0;
+        background-color: var(--textarea-bg);
+        color: var(--textarea-font);
+        padding: 10px;
+        &::placeholder{
+            color: var(--textarea-font);
+        }
+        caret-color: var(--textarea-font);
+    }
+}
