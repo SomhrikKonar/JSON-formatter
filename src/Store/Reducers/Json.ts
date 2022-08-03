@@ -55,8 +55,6 @@ export const updateJsonReducer=(state:stateInterface=initialState,action:updateE
     if(action.type===actionTypes.UPDATE_JSON){
         return {...state,json:action.payload}
     }else if(action.type===actionTypes.SET_ERROR){
-        console.log(action.payload);
-        
         return{...state,error:action.payload}
     }else if(action.type===actionTypes.UPDATE_HIDE_OBJECT_INDEX){
         return {...state,hideObjectIndex:[...action.payload]}

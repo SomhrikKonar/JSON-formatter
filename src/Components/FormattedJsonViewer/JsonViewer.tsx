@@ -33,10 +33,10 @@ const JsonViewer: React.FC = () => {
         onClickHandler={handleClick}
       />
       <div className={styles.formattedCodeContainer}>
-        {!state?.json || Object.keys(state?.json).length <= 0 ? (
-          "// formatted json"
-        ) : state.error ? (
+        {state?.error ? (
           state.error
+        ) : !state?.json || Object.keys(state?.json).length <= 0 ? (
+          "// formatted json"
         ) : (
           <ObjectViewer data={state?.json} index={0} />
         )}

@@ -30,8 +30,6 @@ const InputField: React.FC = () => {
           inputValue[inputValue.length - 1] === "}"
         ) {
           inputValue = commaAdder(inputValue.replaceAll("\n", ""));
-          console.log(inputValue);
-
           let obj = ObjectParse(inputValue);
           if (obj) dispatch(handleUpdateJson(JSON.parse(JSON.stringify(obj))));
         }
@@ -56,7 +54,7 @@ const InputField: React.FC = () => {
       for (let i = 0; i < obj.length; i++) {
         if (
           obj[i] === "," &&
-          key.indexOf(":") > 0 &&
+          key.indexOf(":") !== -1 &&
           openBrace === 0 &&
           openArray === 0
         ) {
@@ -90,10 +88,12 @@ const InputField: React.FC = () => {
               if (val[val.length - 2] !== ",") {
                 val = val.substring(0, val.length - 1) + ",}";
               }
-              newObj = {
-                ...newObj,
-                [key.substring(0, key.length - 1).trim()]: ObjectParse(val),
-              };
+              if (key)
+                newObj = {
+                  ...newObj,
+                  [key.substring(0, key.length - 1).trim()]: ObjectParse(val),
+                };
+              else throw new SyntaxError("Invalid Object");
               key = "";
               val = "";
             }
@@ -129,10 +129,12 @@ const InputField: React.FC = () => {
                   newArrayObj.push(ele.trim().substring(0, ele.trim().length));
                 }
               });
-              newObj = {
-                ...newObj,
-                [key.substring(0, key.length - 1).trim()]: newArrayObj,
-              };
+              if (key)
+                newObj = {
+                  ...newObj,
+                  [key.substring(0, key.length - 1).trim()]: newArrayObj,
+                };
+              else throw new SyntaxError("Invalid Object");
               key = "";
               val = "";
             }
