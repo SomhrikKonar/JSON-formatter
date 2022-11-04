@@ -6,10 +6,9 @@ import {
   handleError,
   handleHideObjectIndex,
 } from "../../../../Store/Reducers/Json";
-import { isEmptyBindingElement } from "typescript";
 interface Props {
   data: object;
-  index: number;
+  index: string;
 }
 const ObjectViewer: React.FC<Props> = ({ data, index }) => {
   const [state, dispatch] = useStore();
@@ -18,7 +17,7 @@ const ObjectViewer: React.FC<Props> = ({ data, index }) => {
     invalidKey(data);
   }, [data]);
 
-  const handleHideObject = (n: number) => {
+  const handleHideObject = (n: string) => {
     if (state?.hideObjectIndex) {
       let nExists = state?.hideObjectIndex.find((ele) => ele === n);
       let newArr = [];
@@ -33,7 +32,7 @@ const ObjectViewer: React.FC<Props> = ({ data, index }) => {
     }
   };
 
-  const isObjectHidden = (n: number) => {
+  const isObjectHidden = (n: string) => {
     let objectHidden = state?.hideObjectIndex.find((ele) => ele === n);
     if (objectHidden !== undefined) return true;
     else return false;
@@ -77,8 +76,9 @@ const ObjectViewer: React.FC<Props> = ({ data, index }) => {
               key={i}
               className={`${styles.line} ${
                 styles[
+                  v &&
                   typeof v === "object" &&
-                  !isObjectHidden(index + i + 1) &&
+                  !isObjectHidden(index + "-" + k) &&
                   Object.keys(v).length > 0
                     ? "blockLine"
                     : "flexLine"
@@ -86,7 +86,7 @@ const ObjectViewer: React.FC<Props> = ({ data, index }) => {
               }`}
             >
               <div className={styles.key}>
-                {typeof v === "object" && Object.keys(v).length > 0 && (
+                {v && typeof v === "object" && Object.keys(v).length > 0 && (
                   <Triangle
                     fill="#111"
                     height={9}
@@ -94,18 +94,18 @@ const ObjectViewer: React.FC<Props> = ({ data, index }) => {
                     className={styles.objectHider}
                     style={{
                       transform: `rotate(${
-                        isObjectHidden(index + i + 1) ? "60deg" : "30deg"
+                        isObjectHidden(index + "-" + k) ? "60deg" : "30deg"
                       })`,
                     }}
-                    onClick={() => handleHideObject(index + i + 1)}
+                    onClick={() => handleHideObject(index + "-" + k)}
                   />
                 )}
                 {removeComma(k)}:
               </div>
               <div className={styles.value}>
-                {typeof v === "object" ? (
-                  !isObjectHidden(index + i + 1) ? (
-                    <ObjectViewer data={v} index={index + i + 1} />
+                {v && typeof v === "object" ? (
+                  !isObjectHidden(index + "-" + k) ? (
+                    <ObjectViewer data={v} index={index + "-" + k} />
                   ) : Array.isArray(v) ? (
                     "[<-->]"
                   ) : (

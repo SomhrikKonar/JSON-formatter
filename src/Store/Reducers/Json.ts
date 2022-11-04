@@ -6,7 +6,7 @@ export enum actionTypes{
 export interface stateInterface{
     json:object;
     error:string;
-    hideObjectIndex:number[];
+    hideObjectIndex:string[];
     inputFormat:string
 }
 export interface updateJson{
@@ -19,7 +19,7 @@ export interface updateError{
 }
 export interface updateHideObjectIndex{
     type:actionTypes.UPDATE_HIDE_OBJECT_INDEX;
-    payload:number[];
+    payload:string[];
 }
 export interface changeInputFormat{
     type:actionTypes.CHANGE_INPUT_FORMAT,
@@ -44,7 +44,7 @@ export const handleError=(error:string):updateError=>({
     type:actionTypes.SET_ERROR,
     payload:error
 })
-export const handleHideObjectIndex=(index:number[]):updateHideObjectIndex=>({
+export const handleHideObjectIndex=(index:string[]):updateHideObjectIndex=>({
     type:actionTypes.UPDATE_HIDE_OBJECT_INDEX,
     payload:index
 })

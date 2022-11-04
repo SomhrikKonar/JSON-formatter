@@ -38,7 +38,7 @@ const JsonViewer: React.FC = () => {
         ) : !state?.json || Object.keys(state?.json).length <= 0 ? (
           "// formatted json"
         ) : (
-          <ObjectViewer data={state?.json} index={0} />
+          <ObjectViewer data={state?.json} index={""} />
         )}
       </div>
     </div>
